@@ -51,7 +51,7 @@ class Particle {
   
     show() {
        noStroke()
-      if(state ===2){
+      if(state ===1){
       push()
       translate(this.pos.x,this.pos.y)
       let clr =myvideo.get(floor(this.pos.x/3),floor(this.pos.y/3),6,6)
@@ -60,7 +60,7 @@ class Particle {
       pop()
       }
       
-      else if(state===1){
+      else if(state===0){
           push()
           translate(this.pos.x,this.pos.y)
           let clr =myvideo.get(floor(this.pos.x/6),floor(this.pos.y/6),55,55)

@@ -9,10 +9,14 @@ let wars; // hold warsound
 let state = 0; // hold the state of the shower
 let lasttouch = 0; // for debouncing touch
 let first = true; // boolean for first touch
+
 CanvasRenderingContext2D.willReadFrequently = true
 function setup() {
-  createCanvas(600, 600); // larger canvas to draw to
-
+    cnv = createCanvas(600, 600);
+    let cx = floor((windowWidth - cnv.width) / 2);
+    let cy = floor((windowHeight - cnv.height) / 2);
+    cnv.position(cx, cy);
+    imageMode(CENTER);
   if (width < height) {
     vScale = floor(width / 200); // vScale tied to window width so it can work on phone and computer
     console.log("by width");
@@ -23,7 +27,7 @@ function setup() {
   pixelDensity(1);
   myvideo = createCapture(VIDEO);
   myvideo.size(100,100);
-  //myvideo.hide();
+  myvideo.hide();
   // video dom element , the source, will be smaller by vScale which is 40 by 30 to improve performance
   //frameRate(15);
   noSmooth();
@@ -43,7 +47,7 @@ function touchStarted() {
     
       }
       state++;
-      state = state % 3;
+      state = state % 2;
    
       // update
       lasttouch = currenttime;
@@ -56,17 +60,11 @@ function touchStarted() {
     // for firefox computer browsers
   }
   function draw() {
-    if (frameCount < 2) {
-    }
-    //waters.loop()
-    if (state === 2) {
+     
       background(0);
-      //wars.play()
-    } else {
-      background(0);
-    }
+    
   
-    if (state > 0) {
+    
       for (let i = 0; i < 3; i++) {
         particles.push(new Particle(150, 10));
       }
@@ -83,5 +81,5 @@ function touchStarted() {
           particles.splice(i, 1);
         }
       }
-    }
+    
   }
