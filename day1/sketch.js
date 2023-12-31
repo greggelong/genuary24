@@ -1,25 +1,31 @@
 let myvideo;
 let vScale; // global video scaling variable
-let img; //
-let sort = false;
-let lasttouch = 0;
-
+let particles = [];
+let cnv; // holds the canvas
+let missle; // hold missle image
+let drop; // hold drop image
+let waters; // hold water sound
+let wars; // hold warsound
+let state = 0; // hold the state of the shower
+let lasttouch = 0; // for debouncing touch
+let first = true; // boolean for first touch
+CanvasRenderingContext2D.willReadFrequently = true
 function setup() {
-  createCanvas(windowWidth, windowHeight); // larger canvas to draw to
+  createCanvas(600, 600); // larger canvas to draw to
 
   if (width < height) {
-    vScale = floor(width / 150); // vScale tied to window width so it can work on phone and computer
+    vScale = floor(width / 200); // vScale tied to window width so it can work on phone and computer
     console.log("by width");
   } else {
-    vScale = floor(height / 150);
+    vScale = floor(height / 200);
     console.log("by height");
   }
   pixelDensity(1);
   myvideo = createCapture(VIDEO);
-  myvideo.size(width / vScale, height / vScale);
-  myvideo.hide();
+  myvideo.size(100,100);
+  //myvideo.hide();
   // video dom element , the source, will be smaller by vScale which is 40 by 30 to improve performance
-  frameRate(15);
+  //frameRate(15);
   noSmooth();
 }
 
@@ -34,25 +40,11 @@ function touchStarted() {
       if (first) {
         first = false;
         print("first time");
-        waters.play();
+    
       }
       state++;
       state = state % 3;
-  
-      if (state === 0) {
-        // .isPlaying() returns a boolean
-  
-        waters.stop();
-        wars.stop();
-      } else if (state === 1) {
-        wars.stop();
-        waters.play();
-        waters.loop();
-      } else if (state === 2) {
-        waters.stop();
-        wars.play();
-        wars.loop();
-      }
+   
       // update
       lasttouch = currenttime;
     }
@@ -68,20 +60,19 @@ function touchStarted() {
     }
     //waters.loop()
     if (state === 2) {
-      background(200);
+      background(0);
       //wars.play()
     } else {
-      background(255);
+      background(0);
     }
   
-    image(img, 300, 40, 100, 120);
     if (state > 0) {
       for (let i = 0; i < 3; i++) {
-        particles.push(new Particle(300, 70));
+        particles.push(new Particle(150, 10));
       }
   
       for (let particle of particles) {
-        let gravity = createVector(0, 0.2);
+        let gravity = createVector(0, 0.5);
         particle.applyForce(gravity);
         particle.update();
         particle.show();

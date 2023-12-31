@@ -10,10 +10,10 @@ class Particle {
     constructor(x, y) {
       this.pos = createVector(x, y);
       this.vel = p5.Vector.random2D();
-      this.vel.mult(random(0.5, 2));
+      this.vel.mult(random(1.5, 4));
       this.acc = createVector(0, 0);
-      this.r = 4;
-      this.lifetime = 500;
+      this.r = 8;
+      this.lifetime = 30;
       this.a = random(180)
     }
   
@@ -50,19 +50,25 @@ class Particle {
     }
   
     show() {
-       
+       noStroke()
       if(state ===2){
       push()
       translate(this.pos.x,this.pos.y)
-      rotate(this.a)
-      image(missle,0,0,this.r*6,this.r*6)
+      let clr =myvideo.get(floor(this.pos.x/3),floor(this.pos.y/3),6,6)
+      //fill(clr[0],clr[1],clr[2])
+      image(clr,this.pos.x, this.pos.y,55,55);
       pop()
       }
       
       else if(state===1){
           push()
           translate(this.pos.x,this.pos.y)
-          image(drop,0,0,this.r*4,this.r*4)
+          let clr =myvideo.get(floor(this.pos.x/6),floor(this.pos.y/6),55,55)
+          //print(clr)
+          //fill(clr[0],clr[1],clr[2])
+          //ellipse(this.pos.x, this.pos.y, this.r * 2);
+          
+          image(clr,this.pos.x, this.pos.y);
           pop()
   
       }
