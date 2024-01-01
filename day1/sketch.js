@@ -12,7 +12,7 @@ let first = true; // boolean for first touch
 
 CanvasRenderingContext2D.willReadFrequently = true
 function setup() {
-    cnv = createCanvas(600, 600);
+    cnv = createCanvas(600,800 );
     let cx = floor((windowWidth - cnv.width) / 2);
     let cy = floor((windowHeight - cnv.height) / 2);
     cnv.position(cx, cy);
@@ -26,7 +26,7 @@ function setup() {
   }
   pixelDensity(1);
   myvideo = createCapture(VIDEO);
-  myvideo.size(100,100);
+  myvideo.size(50,50);
   myvideo.hide();
   // video dom element , the source, will be smaller by vScale which is 40 by 30 to improve performance
   //frameRate(15);
@@ -61,16 +61,16 @@ function touchStarted() {
   }
   function draw() {
      
-      background(0);
+      background(0,10);
     
   
     
       for (let i = 0; i < 3; i++) {
-        particles.push(new Particle(150, 10));
+        particles.push(new Particle(random(100,150),20 ));
       }
   
       for (let particle of particles) {
-        let gravity = createVector(0, 0.5);
+        let gravity = createVector(0, 0.9);
         particle.applyForce(gravity);
         particle.update();
         particle.show();

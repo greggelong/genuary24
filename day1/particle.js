@@ -54,16 +54,17 @@ class Particle {
       if(state ===1){
       push()
       translate(this.pos.x,this.pos.y)
-      let clr =myvideo.get(floor(this.pos.x/3),floor(this.pos.y/3),6,6)
-      //fill(clr[0],clr[1],clr[2])
-      image(clr,this.pos.x, this.pos.y,55,55);
+      let clr =myvideo.get(floor(this.pos.x/5.5),floor(this.pos.y/8))
+      fill(clr[0],clr[1],clr[2])
+      ellipse(this.pos.x, this.pos.y, 12*2);
+      //image(clr,this.pos.x, this.pos.y,55,55);
       pop()
       }
       
       else if(state===0){
           push()
           translate(this.pos.x,this.pos.y)
-          let clr =myvideo.get(floor(this.pos.x/6),floor(this.pos.y/6),55,55)
+          let clr =myvideo.get(floor(this.pos.x/12),floor(this.pos.y/12),55,55)
           //print(clr)
           //fill(clr[0],clr[1],clr[2])
           //ellipse(this.pos.x, this.pos.y, this.r * 2);
