@@ -23,7 +23,7 @@ function setup() {
     //color(255, 128, 0), // Orange
     color(255), //white
     color(128, 0, 255), // Purple
-    color(0, 255, 128), // Turquoise
+    //color(0, 255, 128), // Turquoise
     //color(128, 255, 0), // Lime
   ];
   angleMode(DEGREES);
