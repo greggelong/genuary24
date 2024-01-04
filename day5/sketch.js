@@ -3,8 +3,8 @@ let mj;
 let cnv;
 let vcp; // vera color palette
 let grid = [];
-let gridSize = 12; //6;    12 2, 24 4  6, 1
-let cellSize = 125 / 2; //2; // Adjust this based on your canvas size
+let gridSize = 6; //6;    12 2, 24 4  6, 1
+let cellSize = 125; //2; // Adjust this based on your canvas size
 let lasttouch = 0;
 let clicks = 0;
 
@@ -28,6 +28,7 @@ function setup() {
   ];
   angleMode(DEGREES);
   background(255);
+  strokeWeight(4);
   frameRate(8);
   gridSetup();
 }
@@ -46,6 +47,7 @@ function touchStarted() {
     gridSize = grdsz[rndsz];
     // call grid setup
     clicks++;
+    strokeWeight(4 - rndsz); // stroke
     gridSetup();
   }
 
