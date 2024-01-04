@@ -20,10 +20,11 @@ function setup() {
     color(255, 255, 0), // Yellow
     color(255, 0, 255), // Magenta
     color(0, 255, 255), // Cyan
-    color(255, 128, 0), // Orange
+    //color(255, 128, 0), // Orange
+    color(255), //white
     color(128, 0, 255), // Purple
     color(0, 255, 128), // Turquoise
-    color(128, 255, 0), // Lime
+    //color(128, 255, 0), // Lime
   ];
   angleMode(DEGREES);
   background(255);
