@@ -168,7 +168,7 @@ function setup() {
   myvideo.size(width / vScale, height / vScale);
   myvideo.hide();
   // video dom element , the source, will be smaller by vScale which is 40 by 30 to improve performance
-  frameRate(3);
+  frameRate(5);
   textAlign(LEFT, TOP);
   textFont("Courier New");
   //textSize(24);
