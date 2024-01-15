@@ -80,6 +80,8 @@ const lc = [
 
   // z
   "00000000 00000000 01111110 00000100 00001000 00010000 00100000 01111110",
+  // blank
+  "00000000 00000000 00000000 00000000 00000000 00000000 00000000 000000000",
 ];
 
 function setup() {
@@ -91,6 +93,12 @@ function setup() {
   makeGrid();
   print(grid.length);
   showGrid();
+  frameRate(1);
+}
+function draw() {
+  background(255);
+  makeGrid();
+  showGrid();
 }
 
 function makeGrid() {
@@ -100,6 +108,7 @@ function makeGrid() {
       mystr = random(lc);
       cstr = mystr.replaceAll(" ", "");
       grid[j][i] = new Lettr(i * sz, j * sz, cstr);
+
       //.replaceAll(" ", "")
     }
   }
