@@ -33,7 +33,7 @@ function setup() {
   angleMode(DEGREES);
   background(255);
   //strokeWeight(4);
-  frameRate(8);
+  frameRate(1);
   gridSetup();
 }
 
@@ -69,7 +69,7 @@ function gridSetup() {
     for (let j = 0; j < gridSize; j++) {
       grid[i][j] = new Gurtle(
         i * cellSize + cellSize / 2,
-        j * cellSize + 55,
+        j * cellSize + 60,
         random(vcp)
       );
     }
