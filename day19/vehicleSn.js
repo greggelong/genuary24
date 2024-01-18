@@ -64,7 +64,7 @@ class Vehicle {
     noFill();
 
     stroke(this.c);
-    strokeWeight(20);
+    strokeWeight(8);
     beginShape();
     for (let i = 0; i < this.body.length; i++) {
       vertex(this.body[i].x, this.body[i].y);
