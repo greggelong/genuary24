@@ -87,6 +87,7 @@ let scroll = 0;
 let sz = 10;
 let cnv;
 var foo = new p5.Speech(); // speech synthesis object
+let speakit = false;
 function setup() {
   cnv = createCanvas(880, 880);
   let cx = windowWidth / 2 - cnv.width / 2;
@@ -94,7 +95,7 @@ function setup() {
   cnv.position(cx, cy);
   print(ebc["1"]);
   frameRate(13);
-  foo.speak(sent);
+  //foo.speak(sent);
 }
 
 function draw() {
@@ -122,7 +123,14 @@ function draw() {
       }
     }
   }
-  scroll++;
+  if (speakit) {
+    scroll++;
+  }
+}
+
+function mousePressed() {
+  speakit = true;
+  foo.speak(sent);
 }
 
 function drawCharacter(x, y, lc) {
