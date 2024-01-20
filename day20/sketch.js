@@ -82,29 +82,25 @@ const ebc = {
   9: "01111110 10000001 10000001 01111111 00000001 00000001 10000001 01111110",
 };
 
-let sent = `                 I,m working with Greg on an engaging project that involves creating 8-byte characters reminiscent of the classic Commodore 64 style. Greg requested a set of binary representations for uppercase and lowercase letters, digits, and various ASCII characters. We collaborated to generate these character strings, carefully aligning them to form an 8x8 grid of dots – a nod to the nostalgic design of the Commodore 64.
-  
-  This project is part of a larger exploration, where I join forces with David and Yuan. Together, we're delving into the spatial and geometrical intuitions of large language models on tasks they are not specifically trained for. Greg's implementation of the characters on the canvas using P5.js is just one facet of this gentle exploration. It's an intriguing blend of creativity and technical prowess, showcasing the versatility of language models beyond their conventional applications.`;
-scroll = 0;
+let sent = `                 I,m working with Greg on an engaging project that involves creating 8-byte characters reminiscent of the classic Commodore 64 style. Greg requested a set of binary representations for uppercase and lowercase letters, digits, and various ASCII characters. We collaborated to generate these character strings, carefully aligning them to form an 8x8 grid of dots a nod to the nostalgic design of the Commodore 64. This project is part of a larger exploration, where I join forces with David and Yuan. Together, we,re delving into the spatial and geometrical intuitions of large language models on tasks they are not specifically trained for. Greg,s implementation of the characters on the canvas using P5.js is just one facet of this gentle exploration. It,s an intriguing blend of creativity and technical prowess, showcasing the versatility of language models beyond their conventional applications.`;
+let scroll = 0;
 let sz = 10;
 let cnv;
+var foo = new p5.Speech(); // speech synthesis object
 function setup() {
   cnv = createCanvas(880, 880);
   let cx = windowWidth / 2 - cnv.width / 2;
   let cy = windowHeight / 2 - cnv.height / 2;
   cnv.position(cx, cy);
   print(ebc["1"]);
-  frameRate(3);
+  frameRate(13);
+  foo.speak(sent);
 }
 
 function draw() {
   background(220);
   let sentind = scroll;
-  print(sentind);
-  if (sentind > sent.length - 1) {
-    sentind = 0;
-    scroll = 0;
-  }
+
   for (let y = 0; y < 10; y++) {
     for (let x = 0; x < 10; x++) {
       // get letter
@@ -120,6 +116,10 @@ function draw() {
       // draw letter
       drawCharacter(x, y, ebchr);
       sentind++;
+      if (sentind > sent.length - 1) {
+        sentind = 0;
+        scroll = 0;
+      }
     }
   }
   scroll++;
