@@ -15,17 +15,17 @@ function setup() {
   mycheck.position(cx, cy + height + 20);
 
   clrs = [
-    color(255, 0, 0), // Red
-    color(255, 255, 0), // Yellow
-    color(0, 0, 255), // Blue
-    color(255, 165, 0), // Orange
-    color(0, 255, 0), // Green
-    color(128, 0, 128), // Purple
-    color(255, 192, 203), // Pink
-    color(0, 255, 255), // Cyan
-    color(0, 191, 255), // Turquoise
-    color(139, 69, 19), // Brown
-    color(210, 105, 30), // Chocolate
+    color(255, 0, 0, 20), // Red
+    color(255, 255, 0, 20), // Yellow
+    color(0, 0, 255, 20), // Blue
+    color(255, 165, 0, 20), // Orange
+    color(0, 255, 0, 20), // Green
+    color(128, 0, 128, 20), // Purple
+    color(255, 192, 203, 20), // Pink
+    color(0, 255, 255, 20), // Cyan
+    color(0, 191, 255, 20), // Turquoise
+    color(139, 69, 19, 20), // Brown
+    color(210, 105, 30, 20), // Chocolate
   ];
   // for(let i =0;i<100;i++){
   //    let newblock = new Block(color( "#f9f9f9"));
@@ -56,14 +56,14 @@ function touchStarted() {
 
   if (timesincelasttouch > 500) {
     print("cliked");
-    let elements = ["l"];
+    let elements = ["l", "a", "b"];
     let rndele = random(elements);
     let newele;
 
     if (rndele === "l") {
       newele = new Kline();
-    } else if (rndele === "c") {
-      newele = new Kcircle();
+    } else if (rndele === "b") {
+      newele = new Kball();
     } else {
       newele = new Karc();
     }

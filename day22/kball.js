@@ -1,22 +1,23 @@
-class Karc {
+class Kball {
   constructor() {
-    this.clr = color(0);
-    this.sa = random([0, 30, 33, 45, , 0, 60, 70]); //start angle
+    this.clr = random(clrs);
+    //this.sa = random([0, 30, 33, 45, , 0, 60, 70]); //start angle
     //this.en = random(90);
     this.r = random([20, 50, 100, 300, 400]);
     this.x = random(width);
     this.y = random(height);
-    this.sw = random(2, 5);
+    //this.sw = random(2, 5);
     this.xspeed = 0;
     this.yspeed = 0;
   }
 
   show() {
-    strokeWeight(this.sw);
-    stroke(this.clr);
+    // strokeWeight(this.sw);
+    // stroke(this.clr);
+    noStroke();
     // arc
-    noFill();
-    arc(this.x, this.y, this.r, this.r, this.sa + 60, this.sa);
+    fill(this.clr);
+    ellipse(this.x, this.y, this.r, this.r);
   }
   move() {
     //moves randomly up down left or right
