@@ -2,7 +2,7 @@ class Kline {
   constructor() {
     this.clr = color(0);
     this.dir = random(["h", "h", "v", "v", "v", "d", "d"]);
-    this.len = random([100, 200, 50]);
+    this.len = random([500, 400, 50, 100, 200]);
     this.x = random(width);
     this.y = random(height);
     this.sw = random(2, 5);

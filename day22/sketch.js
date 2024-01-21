@@ -6,7 +6,7 @@ let cnv, cx, xy;
 let mycheck;
 
 function setup() {
-  cnv = createCanvas(600, 600);
+  cnv = createCanvas(800, 800);
   cx = (windowWidth - width) / 2;
   cy = (windowHeight - height) / 2;
   cnv.position(cx, cy);
@@ -56,7 +56,7 @@ function touchStarted() {
 
   if (timesincelasttouch > 500) {
     print("cliked");
-    let elements = ["l", "a", "b"];
+    let elements = ["l", "l", "a", "b"];
     let rndele = random(elements);
     let newele;
 
