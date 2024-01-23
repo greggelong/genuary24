@@ -2,14 +2,11 @@ let greg;
 let mj;
 let cnv;
 let vcp; // vera color palette
-let grid = [];
-let gridSize = 6; //6;    12 2, 24 4  6, 1
-let cellSize = 125; //2; // Adjust this based on your canvas size
 let lasttouch = 0;
 let clicks = 0;
 
 function setup() {
-  cnv = createCanvas(760, 760); //(gridSize * cellSize + 10, gridSize * cellSize + 10);
+  cnv = createCanvas(800, 800); //(gridSize * cellSize + 10, gridSize * cellSize + 10);
   let cx = windowWidth / 2 - cnv.width / 2;
   let cy = windowHeight / 2 - cnv.width / 2;
   cnv.position(cx, cy);
@@ -29,8 +26,8 @@ function setup() {
   angleMode(DEGREES);
   background(255);
   strokeWeight(4);
-  frameRate(8);
-  gridSetup();
+  greg = new Gurtle(width / 2.5, height / 1.5, color(255, 255, 0));
+  frameRate(25);
 }
 
 function touchStarted() {
@@ -39,16 +36,6 @@ function touchStarted() {
 
   if (timesincelasttouch > 500) {
     /// toggle mix
-    let grdsz = [6, 12, 25, 50];
-    let celsz = [125, 62.5, 31.25, 15.625];
-    //let rndsz = floor(random(3));
-    let rndsz = clicks % 4; // to loop through using modulo
-    cellSize = celsz[rndsz];
-    gridSize = grdsz[rndsz];
-    // call grid setup
-    clicks++;
-    strokeWeight(4 - rndsz); // stroke
-    gridSetup();
   }
 
   lasttouch = currenttime;
@@ -58,28 +45,16 @@ function mouseClicked() {
   touchStarted();
 }
 
-function gridSetup() {
-  // Initialize the grid with an turtle object and color
-  for (let i = 0; i < gridSize; i++) {
-    grid[i] = [];
-    for (let j = 0; j < gridSize; j++) {
-      grid[i][j] = new Gurtle(
-        i * cellSize + 15,
-        j * cellSize + 15,
-        random(vcp)
-      );
-    }
-  }
-}
-
 function draw() {
-  background(0);
-  for (let i = 0; i < gridSize; i++) {
-    for (let j = 0; j < gridSize; j++) {
-      msqr(grid[i][j]);
-    }
-  }
-  //noLoop()
+  background(60);
+  push();
+  translate(width / 2, height / 2);
+  rotate(frameCount);
+  greg.x = -20;
+  greg.y = 25;
+  rotate(frameCount);
+  pentri(greg, 200);
+  pop();
 }
 
 function sqr(obj) {
@@ -89,16 +64,20 @@ function sqr(obj) {
   }
 }
 
-function msqr(obj) {
-  // color is taken care of in the object
-  let ta = floor(random(4, 38)); //times around
-  let tsx = obj.x; // start x pos
-  let tsy = obj.y; // start y poso put back
-  for (let i = 0; i < ta; i++) {
-    obj.forward(cellSize / 1.2, cellSize); //(random(cellSize * 0.333, cellSize));
-    obj.right(random(75, 100));
+function pentri(obj, sz) {
+  for (let i = 0; i < 3; i++) {
+    obj.forward(sz);
+    obj.left(120);
+    obj.forward((5 * sz) / 3);
+    obj.right(120);
+    obj.forward(sz / 3);
+    obj.right(60);
+    obj.forward(2 * sz);
+    obj.right(120);
+    obj.forward((5 * sz) / 3);
+    obj.right(120);
+    obj.forward(sz / 3);
+    obj.forward((2 * sz) / 3);
+    obj.right(180);
   }
-  obj.angle = 0; // reset the object
-  obj.x = tsx;
-  obj.y = tsy;
 }
