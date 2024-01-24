@@ -4,6 +4,8 @@ let cnv;
 let vcp; // vera color palette
 let lasttouch = 0;
 let clicks = 0;
+let rotrue = false;
+let a = 0;
 
 function setup() {
   cnv = createCanvas(800, 800); //(gridSize * cellSize + 10, gridSize * cellSize + 10);
@@ -27,6 +29,8 @@ function setup() {
   background(255);
   strokeWeight(4);
   greg = new Gurtle(width / 2.5, height / 1.5, color(255, 255, 0));
+
+  mj = new Gurtle(width / 2.5, height / 1.5, color(0, 0, 255));
   frameRate(25);
 }
 
@@ -36,6 +40,11 @@ function touchStarted() {
 
   if (timesincelasttouch > 500) {
     /// toggle mix
+    if (rotrue) {
+      rotrue = false;
+    } else {
+      rotrue = true;
+    }
   }
 
   lasttouch = currenttime;
@@ -46,15 +55,23 @@ function mouseClicked() {
 }
 
 function draw() {
-  background(60);
-  push();
+  background(0);
+
   translate(width / 2, height / 2);
-  rotate(frameCount);
-  greg.x = -20;
+  greg.x = -10;
   greg.y = 25;
-  rotate(frameCount);
+  mj.x = 300;
+  mj.y = -325;
+  if (rotrue) {
+    a++;
+    a = a % 360;
+  }
+  greg.angle = a;
+  let a2 = a * 2;
+  a2 = a2 % 360;
+  mj.angle = 360 - a2;
   pentri(greg, 200);
-  pop();
+  pentri(mj, 50);
 }
 
 function sqr(obj) {
