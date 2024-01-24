@@ -55,13 +55,13 @@ function mouseClicked() {
 }
 
 function draw() {
-  background(0);
+  background(1);
 
   translate(width / 2, height / 2);
   greg.x = -10;
   greg.y = 25;
   mj.x = 300;
-  mj.y = -325;
+  mj.y = -320;
   if (rotrue) {
     a++;
     a = a % 360;
