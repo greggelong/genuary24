@@ -119,7 +119,7 @@ function resetIt() {
 
 function draw() {
   // play sound
-  print(count);
+  //print(count);
 
   note = cells[count].b;
   // print(seed, count, notes[count]);
@@ -196,7 +196,9 @@ function getNextGen() {
 
     let newState = ruleset[rules(a, b, c)];
     let neighState = wordMapping2[rules(a, b, c)];
+    //print("rules", rules(a, b, c));
     newCells[i] = { a: newState, b: neighState };
+    // print(newCells[i].b);
   }
   //arrayCopy(newCells,cells);  //  source then destination this
   for (let i = 0; i < cells.length; i++) {
@@ -213,7 +215,6 @@ function rules(a, b, c) {
   else if (a == 0 && b == 1 && c == 0) return 5;
   else if (a == 0 && b == 0 && c == 1) return 6;
   else if (a == 0 && b == 0 && c == 0) return 7;
-  else if (a == 0 && b == 1 && c == 1 && d == 1) return 8;
 }
 
 function binConvert(a, bitLen) {
