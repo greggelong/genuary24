@@ -19,5 +19,7 @@ I map the neighborhood rule to the note.
 ```
 
 I still plot live cells in white and dead cells in black.
-you can enter any of the 256 rules.
-and start with a single live cell or random cells.
+You can enter any of the 256 rules.
+Start with a single live cell or random cells.
+
+Please pay attention that the note corresponding to the neighborhood rule reflects the neighborhood of that cell in the previous generation. It is the neighborhood that gave rise to the cell not it's current neighborhood.
