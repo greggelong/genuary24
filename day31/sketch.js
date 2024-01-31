@@ -2,7 +2,10 @@
 // adapted from Shiffman's Nature of Code
 // display cells
 // copying one array to the other creates problems if you just assign it you need to deep copy i am useing p5.js arrayCopy(sorce,destination) built in pred
-
+let monoSynth;
+let notes = ["C4", "D4", "E4", "F4", "G4", "A5", "B5", "C5"];
+let note;
+let count = 0;
 const wordMapping = {
   111: ["Nature", "自", "Zì"],
   110: ["Technology", "技", "Jì"],
@@ -13,15 +16,26 @@ const wordMapping = {
   "001": ["Dream", "梦", "Mèng"],
   "000": ["Reality", "实", "Shí"],
 };
+// const wordMapping2 = [
+//   "NATURE", // Nature (Zì)
+//   "TECH", // Technology (Jì)
+//   "ART", // Art (Yì)
+//   "SCI", // Science (Kē)
+//   "PEACE", // Peace (Hé)
+//   "WAR", // War (Zhàn)
+//   "DREAM", // Dream (Mèng)
+//   "REAL", // Reality (Shí)
+// ];
+
 const wordMapping2 = [
-  "NATURE", // Nature (Zì)
-  "TECH", // Technology (Jì)
-  "ART", // Art (Yì)
-  "SCI", // Science (Kē)
-  "PEACE", // Peace (Hé)
-  "WAR", // War (Zhàn)
-  "DREAM", // Dream (Mèng)
-  "REAL", // Reality (Shí)
+  "C4", // Nature (Zì)
+  "D4", // Technology (Jì)
+  "E4", // Art (Yì)
+  "F4", // Science (Kē)
+  "G4", // Peace (Hé)
+  "A5", // War (Zhàn)
+  "B5", // Dream (Mèng)
+  "C5", // Reality (Shí)
 ];
 let cells = [];
 
@@ -56,13 +70,20 @@ function setup() {
   box = select("#rndbox");
   print("bing", box.checked());
   setBinRule();
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(800, 800);
+
   textAlign(CENTER, CENTER);
   textStyle(BOLD);
-  cellw = windowWidth / 29; // if you don't floor it it gits some nice collisions
+  cellw = 800 / 25; // if you don't floor it it gits some nice collisions
+  print("this", cellw);
   background(0, 51, 0);
   print(ruleset);
   resetIt();
+  displayCells(generation);
+  monoSynth = new p5.MonoSynth();
+  //note = notes[0];
+  //playSynth();
+  frameRate(7);
 }
 
 function setBinRule() {
@@ -81,8 +102,8 @@ function rndBinRule() {
 function resetIt() {
   // resets the screen with random seeds and generation
   generation = 0;
-  let cl = floor(width / cellw);
-  background(240);
+  let cl = 800 / cellw;
+  background(60);
   for (let i = 0; i < cl; i++) {
     if (box.checked()) {
       cells[i] = { a: floor(random(2)), b: random(wordMapping2) }; // or random
@@ -93,20 +114,41 @@ function resetIt() {
   console.log(cells.length);
   cells[int(cells.length / 2)] = { a: 1, b: wordMapping2[5] }; // you have to use int here or it wont give an int with some screen sizes and you will not have a 1
   arrayCopy(cells, newCells); // so the arrarys have a first and last element index as they are skiped when creating next generation
+  displayCells(generation);
 }
 
 function draw() {
-  displayCells(generation);
-  if (mouseIsPressed) {
-    getNextGen();
+  // play sound
+  print(count);
+
+  note = cells[count].b;
+  // print(seed, count, notes[count]);
+
+  playSynth();
+
+  // playing note
+  noFill();
+  stroke(255, 0, 0);
+  rect(count * cellw, generation * cellw, cellw, cellw);
+  stroke(255);
+  count++;
+
+  if (count > 24) {
+    count = 0;
     generation++;
-    //console.log(generation);
+    // show cells
+    getNextGen();
     displayCells(generation);
-    if (generation * cellw > height) {
-      //background(255);
-      generation = 0;
-      //background(127)
-    }
+  }
+
+  //console.log(generation);
+
+  if (generation * cellw > height) {
+    //background(255);
+    generation = 0;
+    //background(127)
+    getNextGen();
+    displayCells(generation);
   }
 }
 
@@ -117,11 +159,15 @@ function displayCells(generation) {
     rect(i * cellw, generation * cellw + 0.6, width, cellw);
     if (cells[i].a === 0) {
       //console.log("white");
-      clr = color(51, 153, 255);
-      clrb = color(255, 102, 153, 100);
+      //clr = color(51, 153, 255);
+      clr = color(255);
+      //clrb = color(255, 102, 153, 100);
+      clrb = color(0);
     } else {
-      clr = color(255, 102, 153);
-      clrb = color(51, 153, 255, 100);
+      //clr = color(255, 102, 153);
+      clr = color(0);
+      //clrb = color(51, 153, 255, 100);
+      clrb = color(255);
 
       //console.log("black");
     }
@@ -181,4 +227,19 @@ function binConvert(a, bitLen) {
 
   let binArray = int(binstring.split("")); // is an aray of ints so [0,0,0,0,0,0,1,1]
   return binArray;
+}
+
+function playSynth() {
+  userStartAudio();
+
+  //console.log(note);
+  // note velocity (volume, from 0 to 1)
+  let velocity = 0.5; //random(1,2);
+  // time from now (in seconds)
+  let time = 0;
+  // note duration (in seconds)
+  let dur = 1 / 16;
+
+  monoSynth.play(note, velocity, time, dur);
+  //monoSynth.play(note)
 }
