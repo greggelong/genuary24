@@ -60,6 +60,7 @@ let clrButton;
 function setup() {
   noStroke();
   //para = createP(ruleset);
+  createP("Click mouse for sound");
   myinput = select("#input");
   myinput.changed(setBinRule);
   inbutton = select("#btn");
