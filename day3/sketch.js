@@ -24,9 +24,9 @@ function drostit() {
   for (let i = 0; i < 8; i++) {
     push();
     translate(width / 2 + poss / 2, height / 2);
-    if (i >= 0) {
-      rotate(sin(frameCount % 360) * 30);
-    }
+    // if (i >= 0) {
+    //   rotate(sin(frameCount % 360) * 30);
+    // }
 
     scale(-scl, scl);
     image(capture, 0, 0, -width * scl, height * scl);
