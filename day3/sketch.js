@@ -2,12 +2,12 @@ let capture;
 let scl = 1;
 
 let poss; // not pos
-let cnv;
+//let cnv;
 function setup() {
-  cnv = createCanvas(640, 480);
-  let cx = windowWidth / 2 - cnv.width / 2;
-  let cy = windowHeight / 2 - cnv.width / 2;
-  cnv.position(cx, cy);
+  createCanvas(windowWidth, windowHeight);
+  //let cx = windowWidth / 2 - cnv.width / 2;
+  //let cy = windowHeight / 2 - cnv.width / 2;
+  //cnv.position(cx, cy);
   capture = createCapture(VIDEO);
   capture.hide();
   angleMode(DEGREES);
