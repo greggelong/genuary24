@@ -12,7 +12,7 @@ function setup() {
   //cnv.position(cx, cy);
   pixelDensity(1);
   capture = createCapture(VIDEO);
-  //capture.hide();
+  capture.hide();
   capture.size(width/10,height/10)
   angleMode(DEGREES);
   imageMode(CENTER);
@@ -24,7 +24,7 @@ function draw() {
   background(0);
 
   drostit();
-  ellipse(100,100,100,100)
+  //ellipse(100,100,100,100)
   //image(capture,100,100,100,100)
 
 }
