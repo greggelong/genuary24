@@ -12,7 +12,7 @@ function setup() {
   //cnv.position(cx, cy);
   capture = createCapture(VIDEO);
   capture.hide();
-  capture.size(windowWidth/10,windowHeight/10)
+  capture.size(windowWidth/150,windowHeight/150)
   angleMode(DEGREES);
   imageMode(CENTER);
 }
