@@ -24,7 +24,7 @@ function draw() {
   background(0);
 
   drostit();
-  //ellipse(100,100,100,100)
+  ellipse(100,100,100,100)
   //image(capture,100,100,100,100)
 
 }
