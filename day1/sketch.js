@@ -6,16 +6,16 @@ let missle; // hold missle image
 let drop; // hold drop image
 let waters; // hold water sound
 let wars; // hold warsound
-let state = 0; // hold the state of the shower
+let state = 1; // hold the state of the shower
 let lasttouch = 0; // for debouncing touch
 let first = true; // boolean for first touch
 
 CanvasRenderingContext2D.willReadFrequently = true;
 function setup() {
-  cnv = createCanvas(600, 800);
-  let cx = floor((windowWidth - cnv.width) / 2);
-  let cy = floor((windowHeight - cnv.height) / 2);
-  cnv.position(cx, cy);
+  cnv = createCanvas(windowWidth,windowHeight) //createCanvas(600, 800);
+  //let cx = floor((windowWidth - cnv.width) / 2);
+  //let cy = floor((windowHeight - cnv.height) / 2);
+  //cnv.position(cx, cy);
   imageMode(CENTER);
   if (width < height) {
     vScale = floor(width / 200); // vScale tied to window width so it can work on phone and computer
@@ -44,8 +44,8 @@ function touchStarted() {
       first = false;
       print("first time");
     }
-    state++;
-    state = state % 2;
+    //state++;
+    //state = state % 2;
 
     // update
     lasttouch = currenttime;
@@ -60,7 +60,7 @@ function draw() {
   background(0, 10);
 
   for (let i = 0; i < 3; i++) {
-    particles.push(new Particle(random(100, 150), 20));
+    particles.push(new Particle(random(width/4-25, width/4+25), 20));
   }
 
   for (let particle of particles) {

@@ -56,7 +56,7 @@ class Particle {
       translate(this.pos.x, this.pos.y);
       //let clr =myvideo.get(floor(this.pos.x/5.5),floor(this.pos.y/8))
       // reversed the image created by drops
-      let clr = myvideo.get(myvideo.width - this.pos.x / 5.5, this.pos.y / 8);
+      let clr = myvideo.get(myvideo.width - this.pos.x / 20, this.pos.y / 8);
       fill(clr[0], clr[1], clr[2]);
       ellipse(this.pos.x, this.pos.y, 12 * 2);
       //image(clr,this.pos.x, this.pos.y,55,55);
