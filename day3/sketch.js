@@ -1,5 +1,7 @@
 let capture;
 let scl = 1;
+let rock = false;
+let lasttouch = 0;
 
 let poss; // not pos
 //let cnv;
@@ -24,9 +26,9 @@ function drostit() {
   for (let i = 0; i < 8; i++) {
     push();
     translate(width / 2 + poss / 2, height / 2);
-    // if (i >= 0) {
-    //   rotate(sin(frameCount % 360) * 30);
-    // }
+     if (rock && i >= 0) {
+       rotate(sin(frameCount % 360) * 30+i*2);
+     }
 
     scale(-scl, scl);
     image(capture, 0, 0, -width * scl, height * scl);
@@ -41,6 +43,27 @@ function drostit() {
   scl = 1;
 
   poss = 0;
+}
+
+
+function touchStarted() {
+  const currenttime = millis();
+  const timesincelasttouch = currenttime - lasttouch;
+
+  if (timesincelasttouch > 500) {
+    /// toggle mix
+    if (!rock) {
+      rock = true;
+    } else {
+      rock = false;
+    }
+  }
+
+  lasttouch = currenttime;
+}
+
+function mouseClicked() {
+  touchStarted();
 }
 
 function keyPressed() {
