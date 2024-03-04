@@ -10,17 +10,23 @@ function setup() {
   //let cx = windowWidth / 2 - cnv.width / 2;
   //let cy = windowHeight / 2 - cnv.width / 2;
   //cnv.position(cx, cy);
+  pixelDensity(1);
   capture = createCapture(VIDEO);
-  capture.hide();
-  capture.size(windowWidth/150,windowHeight/150)
+  //capture.hide();
+  capture.size(width/10,height/10)
   angleMode(DEGREES);
   imageMode(CENTER);
+  print(capture.width, capture.height)
+  print(capture)
 }
 
 function draw() {
   background(0);
 
   drostit();
+  //ellipse(100,100,100,100)
+  //image(capture,100,100,100,100)
+
 }
 
 function drostit() {
