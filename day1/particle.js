@@ -13,7 +13,7 @@ class Particle {
     this.vel.mult(random(1.5, 4));
     this.acc = createVector(0, 0);
     this.r = 8;
-    this.lifetime = 40;
+    this.lifetime = 80;
     this.a = random(180);
   }
 
